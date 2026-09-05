@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "challenge_spotter"
+version = "0.1.0"
+dependencies = [
+    "matplotlib>=3.8,<4",
+    "numpy>=1.26,<3",
+    "pandas>=2.0,<3",
+    "pyarrow==15.0.2",
+    "scikit-learn==1.5.2",
+    "xgboost==2.1.1",
+    "optuna>=3.6,<5",
+    "lightgbm==4.5.0",
+    "pyyaml>=6.0.1"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["challenge_spotter*"]
+
+[tool.setuptools.package-data]
+"challenge_spotter" = ["config/*.yaml"]
+
