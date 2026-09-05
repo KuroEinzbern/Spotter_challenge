@@ -6,6 +6,7 @@ Run the following command from the project root to install the project and its d
 
 Since the provided download links were temporary, the initial data must be placed manually. Before running any scripts, create a `data/` directory in the project root and place the required CSV files inside it:
 `train-test.csv`
+`validation.csv`
 `december-chart-inputs.csv`
     
 Once these steps are complete, your environment will be fully functional.
