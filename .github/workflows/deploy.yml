@@ -34,4 +34,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ gh-username }}/transportation_cost_model_api:latest
+          tags: ghcr.io/kuroeinzbern/transportation_cost_model_api:latest
