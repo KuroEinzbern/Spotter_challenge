@@ -19,7 +19,7 @@ To generate the final results easily, execute the following commands from **`roo
 this command preprocess the data and create the  train-test split that are used across the project. This must be executed before running the notebooks.
 
 2- **python train.py**
-Train the final model and serializate it
+Train the final model and serializate it, saving it in `root/models`
 
 2- **python predict.py**
 Load the final model, make the predictions and generates the outputs:
