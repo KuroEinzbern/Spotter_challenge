@@ -1,8 +1,14 @@
 from pathlib import Path
+import os
 
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+if os.path.exists("/app/models"):
+    PROJECT_ROOT = Path("/app")
+else:
+    # Tu lógica local de desarrollo
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 DATA_DIR = PROJECT_ROOT / "data/"
 NOTEBOOKS_DIR= PROJECT_ROOT / "notebooks/"
 CONFIG_PATH= PROJECT_ROOT / "config.yaml"
+MODEL_DIR= PROJECT_ROOT / "models/"

@@ -1,0 +1,19 @@
+import pandas as pd
+from challenge_spotter import config as cfg
+from challenge_spotter.auxiliars import prepare_data,get_final_pipeline
+import joblib
+
+def main():
+    train_df= pd.read_parquet(cfg.DATA_DIR / "train.parquet")
+    test_df= pd.read_parquet(cfg.DATA_DIR / "test.parquet")
+
+    #to use all the data avaible for the final model
+    full_train_df = pd.concat([train_df, test_df], axis=0, ignore_index=True)
+    X_train, Y_train = prepare_data(full_train_df)
+    pipeline = get_final_pipeline()
+    pipeline.fit(X_train,Y_train)
+    joblib.dump(pipeline,filename=cfg.MODEL_DIR / "model_1.0")
+    
+if __name__ == "__main__":
+    main()
+

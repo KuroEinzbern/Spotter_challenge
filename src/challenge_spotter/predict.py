@@ -2,20 +2,17 @@ import pandas as pd
 import numpy as np
 from challenge_spotter import config as cfg
 from challenge_spotter.auxiliars import prepare_data,get_final_pipeline
+import joblib
 
 
 def main():
     validation_df = pd.read_csv(cfg.DATA_DIR / "validation.csv")
-    train_df= pd.read_parquet(cfg.DATA_DIR / "train.parquet")
-    test_df= pd.read_parquet(cfg.DATA_DIR / "test.parquet")
+    train_df = pd.read_csv(cfg.DATA_DIR / "train.csv")
+    X_train =prepare_data(train_df)
 
-    #to use all the data avaible for the final model
-    full_train_df = pd.concat([train_df, test_df], axis=0, ignore_index=True)
+    pipeline= joblib.load(cfg.MODEL_DIR / "model_1.0")
     ids= validation_df["load_id"]
     X_val = validation_df.drop(columns= ["load_id"])
-    X_train, Y_train = prepare_data(full_train_df)
-    pipeline = get_final_pipeline()
-    pipeline.fit(X_train,Y_train)
     predictions= pipeline.predict(X=X_val)
     pred_to_df= pd.Series(predictions)
     validation_predictions= pd.DataFrame({"load_id":ids,"predicted_rate": pred_to_df})

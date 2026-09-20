@@ -24,6 +24,8 @@ class feature_engineering(BaseEstimator, TransformerMixin):
     
     def fit(self, X, y=None):
 
+
+
         self.kmeans = KMeans(
             n_clusters=self.n_clusters, 
             random_state=42, 
@@ -66,10 +68,10 @@ class feature_engineering(BaseEstimator, TransformerMixin):
         #interactions
         df["index_x_distance"] = df["market_index"] * df["distance"]
         df["distance_x_weight"] = df["distance"] * df["weight"]
-        df["index_x_signal"] = df["market_index"] * df["quote_signal"]
+   #     df["index_x_signal"] = df["market_index"] * df["quote_signal"]
 
-        threshold = 1600
-        df["distance_long_haul"] = np.maximum(0, df["distance"] - threshold)
+        #threshold = 1600
+        #df["distance_long_haul"] = np.maximum(0, df["distance"] - threshold)
 
         #drops
         df = df.drop(columns=["date"])    #"pickup_lat","pickup_lon","delivery_lat","delivery_lon"

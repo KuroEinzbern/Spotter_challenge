@@ -10,8 +10,8 @@ features:
     - quote_signal
     - index_x_distance
     - distance_x_weight
-    - index_x_signal
-    - distance_long_haul
+    #- index_x_signal
+    #- distance_long_haul
     #- risk_of_high_cost
 
   categorical:
