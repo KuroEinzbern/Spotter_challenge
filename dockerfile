@@ -6,7 +6,13 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     build-essential \
+    curl \
     && rm -rf /var/lib/apt/lists/*
+
+
+RUN mkdir -p models && \
+    curl -L "https://huggingface.co/KuroEinzbern/transportation_cost_1.0/resolve/main/model_1.0?download=true" -o models/model_1.0
+
 
 COPY . .
 RUN pip install --no-cache-dir .

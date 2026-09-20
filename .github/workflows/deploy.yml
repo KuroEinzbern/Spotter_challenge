@@ -17,11 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Download Model Artefact
-        run: |
-          mkdir -p models
-          curl -L "https://huggingface.co/KuroEinzbern/transportation_cost_1.0/resolve/main/model_1.0?download=true"
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
