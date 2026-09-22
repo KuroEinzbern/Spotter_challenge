@@ -4,6 +4,7 @@ import pandas as pd
 from contextlib import asynccontextmanager
 from challenge_spotter.api.schema_validation import PredictionRequest, PredictionResponse
 from challenge_spotter import config as cfg
+import os
 
 
 pipeline = None
@@ -12,9 +13,9 @@ pipeline = None
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global pipeline
-    pipeline = joblib.load(cfg.MODEL_DIR / "model_1.0")
+    model_version = os.getenv("model_version", 1.0)
+    pipeline = joblib.load(cfg.MODEL_DIR / f"model_{model_version}")
     yield 
-    
     pipeline= None
 
 app = FastAPI(title="Model API", lifespan=lifespan )
@@ -26,3 +27,7 @@ def predict(request: PredictionRequest):
     X_to_predict= input_data.drop(columns=["load_id"])
     prediction= pipeline.predict(X=X_to_predict)
     return PredictionResponse(load_id=request.load_id,prediction=float(prediction[0]))
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}

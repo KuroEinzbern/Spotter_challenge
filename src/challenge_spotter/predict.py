@@ -8,7 +8,7 @@ import joblib
 def main():
     validation_df = pd.read_csv(cfg.DATA_DIR / "validation.csv")
     train_df = pd.read_csv(cfg.DATA_DIR / "train.csv")
-    X_train =prepare_data(train_df)
+    X_train , _ =prepare_data(train_df)
 
     pipeline= joblib.load(cfg.MODEL_DIR / "model_1.0")
     ids= validation_df["load_id"]

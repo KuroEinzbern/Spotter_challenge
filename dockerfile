@@ -1,6 +1,8 @@
 FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ARG MODEL_VERSION
+ENV MODEL_VERSION=${MODEL_VERSION}
 
 WORKDIR /app
 
@@ -11,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 
 
 RUN mkdir -p models && \
-    curl -L "https://huggingface.co/KuroEinzbern/transportation_cost_1.0/resolve/main/model_1.0?download=true" -o models/model_1.0
+    curl -L "https://huggingface.co/KuroEinzbern/transportation_cost/resolve/main/model_{MODEL_VERSION}?download=true" -o models/model_{MODEL_VERSION}
 
 
 COPY . .
