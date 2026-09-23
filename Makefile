@@ -1,4 +1,4 @@
-include .env
+-include .env
 
 ifeq ($(OS),Windows_NT)
     SHELL := bash.exe
