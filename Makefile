@@ -11,9 +11,9 @@ endif
 .PHONY:install download_datasets data train predict_validation local_deploy publish_model
 
 install:
+	python -c "import os, shutil; shutil.copy('.env.example', '.env') if not os.path.exists('.env') else print('.env already exists')"
 	python -m venv venv
 	$(PYTHON) -m pip install -r models_requirements.txt
-	python -c "import os, shutil; shutil.copy('.env.example', '.env') if not os.path.exists('.env') else print('.env already exists')"
 
 download_datasets:
 	$(PYTHON) src/challenge_spotter/download_data.py
